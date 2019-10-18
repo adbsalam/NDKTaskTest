@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NDKTaskTest</string>
+    <string name="results">Results</string>
+    <string name="err_NUMBER">Number is Required</string>
 </resources>

@@ -8,3 +8,6 @@ Java_com_salam_ndktasktest_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+
+
+
