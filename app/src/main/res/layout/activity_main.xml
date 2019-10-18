@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/sample_text"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"
+        android:textSize="50sp"
         android:text="@string/results"
         android:layout_centerHorizontal="true"/>
 
@@ -42,13 +42,14 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="1"
-            />
+            android:inputType="number"/>
         <EditText
             android:id="@+id/et_num2"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="1"
+            android:inputType="number"
             />
     </LinearLayout>
 

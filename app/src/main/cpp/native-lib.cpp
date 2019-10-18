@@ -9,3 +9,5 @@ Java_com_salam_ndktasktest_MainActivity_stringFromJNI(
     return env->NewStringUTF(hello.c_str());
 }
 
+
+

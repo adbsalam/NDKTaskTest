@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int num1, num2, results;
+    //input numbers
+    int num1, num2;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         final TextView tv = findViewById(R.id.sample_text);
-        TextView tv_Results = findViewById(R.id.tv_results);
+        final TextView tv_Results = findViewById(R.id.tv_results);
 
         //EditText
         final EditText et_One = findViewById(R.id.et_num1);
@@ -39,21 +41,100 @@ public class MainActivity extends AppCompatActivity {
         //provided by android studio as first action
         tv.setText(stringFromJNI());
 
-        //addition of numbers
+
+
+        //addition of numbers with text validations on null input
         btn_Addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num1 = Integer.valueOf(et_One.getText().toString());
-                num2 = Integer.valueOf(et_Two.getText().toString());
 
-                tv.setText(String.valueOf(sumOfNumbers(num1, num2)));
+                if (et_One.getText().length() == 0){
+                    et_One.setError(getString(R.string.err_NUMBER));
+                    et_One.requestFocus();
+                }
+                else if (et_Two.getText().length() == 0){
+                    et_Two.setError(getString(R.string.err_NUMBER));
+                    et_Two.requestFocus();
+                }
+                else {
+                    num1 = Integer.valueOf(et_One.getText().toString());
+                    num2 = Integer.valueOf(et_Two.getText().toString());
+
+                    tv_Results.setText(String.valueOf(sumOfNumbers(num1, num2)));
+                }
+
+
             }
         });
 
+        //subtraction of numbers  with text validations on null input
+        btn_Subtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et_One.getText().length() == 0){
+                    et_One.setError(getString(R.string.err_NUMBER));
+                    et_One.requestFocus();
+                }
+                else if (et_Two.getText().length() == 0){
+                    et_Two.setError(getString(R.string.err_NUMBER));
+                    et_Two.requestFocus();
+                }
+                else {
+                    num1 = Integer.valueOf(et_One.getText().toString());
+                    num2 = Integer.valueOf(et_Two.getText().toString());
+
+                    tv_Results.setText(String.valueOf(subtractionOfNumbers(num1, num2)));
+                }
 
 
+            }
+        });
+
+        //multiplication of numbers with text validations on null input
+        btn_Mulitply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et_One.getText().length() == 0){
+                    et_One.setError(getString(R.string.err_NUMBER));
+                    et_One.requestFocus();
+                }
+                else if (et_Two.getText().length() == 0){
+                    et_Two.setError(getString(R.string.err_NUMBER));
+                    et_Two.requestFocus();
+                }
+
+                else {
+                    num1 = Integer.valueOf(et_One.getText().toString());
+                    num2 = Integer.valueOf(et_Two.getText().toString());
+
+                    tv_Results.setText(String.valueOf(multiplicationOfNumbers(num1, num2)));
+                }
+
+            }
+        });
+
+        //division of numbers with text validations on null input
+        btn_Divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et_One.getText().length() == 0){
+                    et_One.setError(getString(R.string.err_NUMBER));
+                    et_One.requestFocus();
+                }
+                else if (et_Two.getText().length() == 0){
+                    et_Two.setError(getString(R.string.err_NUMBER));
+                    et_Two.requestFocus();
+                }
+                else {
+                    num1 = Integer.valueOf(et_One.getText().toString());
+                    num2 = Integer.valueOf(et_Two.getText().toString());
+
+                    tv_Results.setText(String.valueOf(divideNumbers(num1, num2)));
+                }
 
 
+            }
+        });
 
     }
 
@@ -72,6 +153,29 @@ public class MainActivity extends AppCompatActivity {
      * @return results output a+b
      */
     public native int sumOfNumbers(int a, int b);
+
+    /**
+     *
+     * @param a first input
+     * @param b second input
+     * @return a-b
+     */
+    public native int subtractionOfNumbers(int a , int b);
+
+    /**
+     *
+     * @param a first input
+     * @param b second input
+     * @return a*c
+     */
+    public native int multiplicationOfNumbers(int a, int b);
+
+    /**
+     * @param a first input
+     * @param b second input
+     * @return a/b
+     */
+    public native double divideNumbers(int a, int b);
 
 
 
